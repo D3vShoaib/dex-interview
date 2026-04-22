@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student UI Fix Task</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 12% 8%,
+            rgba(255, 255, 255, 0.08),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(255, 255, 255, 0.06),
+            transparent 26%
+          ),
+          #050505;
+        color: #f4f4f5;
+      }
+
+      .page {
+        width: min(1200px, 92vw);
+        margin: 0 auto;
+        padding: 24px 0 40px;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 18px;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.94);
+        color: #09090b;
+        padding: 14px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+        border: 1px solid #e4e4e7;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .menu {
+        display: flex;
+        gap: 20px;
+      }
+
+      .menu a {
+        color: #18181b;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 14px;
+        border-radius: 12px;
+        transition: background 0.18s ease;
+      }
+
+      .menu a:hover {
+        background: #f4f4f5;
+      }
+
+      .hero {
+        min-height: calc(100vh - 130px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 32px 0 0;
+      }
+
+      .layout {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 24px;
+      }
+
+      .card {
+        background: #09090b;
+        border: 1px solid #27272a;
+        border-radius: 24px;
+        padding: 30px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      }
+
+      .logo-panel h1,
+      .form-card h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(28px, 4vw, 38px);
+        line-height: 1.1;
+        margin-bottom: 10px;
+      }
+
+      .logo-panel p,
+      .form-card p {
+        color: #a1a1aa;
+        margin-bottom: 22px;
+        font-size: 15px;
+      }
+
+      .logo-shell {
+        background: linear-gradient(180deg, #18181b, #111113);
+        border: 1px solid #27272a;
+        border-radius: 18px;
+        padding: 20px;
+      }
+
+      .logo-shell img {
+        width: 360px;
+        max-width: 100%;
+        height: 180px;
+        object-fit: contain;
+        display: block;
+        filter: saturate(0.95) brightness(1.05);
+      }
+
+      .hint {
+        margin-top: 14px;
+        color: #f4f4f5;
+        font-size: 13px;
+        background: #18181b;
+        border: 1px solid #27272a;
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .group label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 13px;
+        color: #e4e4e7;
+        font-weight: 600;
+      }
+
+      .group input {
+        width: 100%;
+        padding: 12px 13px;
+        border: 1px solid #3f3f46;
+        border-radius: 11px;
+        outline: none;
+        background: #111113;
+        color: #f4f4f5;
+        transition: border-color 0.18s ease;
+      }
+
+      .group input:focus {
+        border-color: #71717a;
+      }
+
+      button {
+        width: 100%;
+        height: 44px;
+        border: 1px solid #f4f4f5;
+        background: #fafafa;
+        color: #111;
+        border-radius: 11px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: "Space Grotesk", sans-serif;
+        letter-spacing: 0.02em;
+        transition: transform 0.18s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #71717a;
+        font-size: 13px;
+      }
+
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .navbar {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .menu {
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .menu a {
+          flex: 1 1 calc(50% - 8px);
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <nav class="navbar">
+        <div class="brand">DexLab Finance UI</div>
+
+        <div class="menu">
+          <a href="#">Dashboard</a>
+          <a href="#">Reports</a>
+          <a href="#">Billing</a>
+          <a href="#">Support</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="layout">
+          <div class="card logo-panel">
+            <h1>Student Debug Mission</h1>
+            <p>
+              The logo is intentionally too large and placed inside the body.
+              Student task: reduce its size and move it into the navbar.
+            </p>
+
+            <div class="logo-shell">
+              <img
+                src="https://png.pngtree.com/element_our/png/20180911/background-material-design-for-lorem-ipsum-logo-png_89719.jpg"
+                alt="Oversized logo for student task"
+              />
+            </div>
+
+            <div class="hint">
+              Task hint: update the layout without breaking the floating navbar
+              style.
+            </div>
+          </div>
+
+          <div class="card form-card">
+            <h1>Registration Form</h1>
+            <p>Shadcn-inspired card styling on a dark page background.</p>
+
+            <form class="form-row">
+              <div class="group">
+                <label>Name</label>
+                <input type="text" placeholder="Enter name" />
+              </div>
+
+              <div class="group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter email" />
+              </div>
+
+              <div class="group">
+                <label>Phone</label>
+                <input type="text" placeholder="Enter phone" />
+              </div>
+
+              <div class="group">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">UI Debugging Practice Task</footer>
+  </body>
+</html>
